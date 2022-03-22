@@ -1,7 +1,7 @@
 // Get the needed modules
 const fs = require("fs");
 const readline = require("readline");
-const http = require('http');
+const https = require('https');
 
 // Create the readline interface
 const rl = readline.createInterface({
@@ -17,20 +17,8 @@ const links = {
 
 // Functions
 function download(link, name) {
-    http.get(link, function(res) {
-        var data = "";
-        res.on('data', function(chunk) {
-            data += chunk;
-        });
-        res.on('end', function() {
-            fs.writeFile(name, data, function(err) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Downloaded " + name);
-                }
-            });
-        });
+    https.get(link, (res) => {
+        res.pipe(fs.createWriteStream(name));
     });
 }
 
