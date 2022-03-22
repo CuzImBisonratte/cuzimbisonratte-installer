@@ -2,6 +2,7 @@
 const fs = require("fs");
 const readline = require("readline");
 const https = require('https');
+const unzipper = require('unzipper');
 
 // Create the readline interface
 const rl = readline.createInterface({
@@ -16,9 +17,9 @@ const links = {
 }
 
 // Functions
-function download(link, name) {
+function download(link) {
     https.get(link, (res) => {
-        res.pipe(fs.createWriteStream(name));
+        res.pipe(unzipper.Extract({ path: "./temp" }));
     });
 }
 
@@ -52,7 +53,7 @@ rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
             // Download the package
             console.log("Downloading package...");
-            download(links[1], "./temp/avatargenerator.zip");
+            download(links[1]);
 
             // Break the switch
             break;
@@ -62,7 +63,7 @@ rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
             // Download the package
             console.log("Downloading package...");
-            download(links[2], "./temp/stream-overlay.zip");
+            download(links[2]);
 
             // Break the switch
             break;
