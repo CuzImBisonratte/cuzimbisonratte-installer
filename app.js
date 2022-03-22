@@ -45,6 +45,15 @@ console.log("2. Stream Overlay");
 // Ask which program should be installed
 rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
-    
-
+    switch (package) {
+        case "1":
+            console.log("Downloading package...");
+            download(links[1], "./temp/avatargenerator.zip");
+            break;
+        case "2":
+            console.log("Downloading package...");
+            download(links[2], "./temp/stream-overlay.zip");
+            break;
+    }
+    rl.close();
 });
