@@ -9,6 +9,12 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 
+// Download links
+const links = {
+    1: "https://codeload.github.com/CuzImBisonratte/avatargenerator/zip/refs/tags/v1.0.0",
+    2: "https://codeload.github.com/CuzImBisonratte/stream-overlay/zip/refs/tags/v1.1.0",
+}
+
 // Start message
 console.log("Welcome to the CuzImBisonratte - Package installer");
 console.log("With this you can download packages and if nessecary install them.");
