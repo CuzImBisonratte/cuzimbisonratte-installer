@@ -22,6 +22,18 @@ function download(link, name) {
     });
 }
 
+
+// 
+// Main
+//
+
+// Initialize
+console.log("Please wait while the program initializes...");
+if (!fs.existsSync("temp")) {
+    fs.mkdirSync("temp");
+}
+console.clear();
+
 // Start message
 console.log("Welcome to the CuzImBisonratte - Package installer");
 console.log("With this you can download packages and if nessecary install them.");
