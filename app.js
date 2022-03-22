@@ -22,7 +22,6 @@ function download(link, name) {
     });
 }
 
-
 // 
 // Main
 //
@@ -67,8 +66,6 @@ rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
             // Break the switch
             break;
-
-
     }
 
     // Close the readline interface
