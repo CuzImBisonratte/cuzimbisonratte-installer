@@ -13,3 +13,6 @@ If you don't want to run the installer, you can do it like this:
 ```
 node app.js
 ```
+
+# Other
+Node.js is not included in the source code, but in the executable.
