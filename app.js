@@ -43,7 +43,7 @@ console.log("2. Stream Overlay");
 
 
 // Ask which program should be installed
-rl.question('Waiting for input... (1-2)', (package) => {
+rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
     
 
