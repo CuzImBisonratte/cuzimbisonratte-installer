@@ -45,15 +45,30 @@ console.log("2. Stream Overlay");
 // Ask which program should be installed
 rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
+    // Switch the input
     switch (package) {
+
+        // Avatargenerator
         case "1":
+
+            // Download the package
             console.log("Downloading package...");
             download(links[1], "./temp/avatargenerator.zip");
+
+            // Break the switch
             break;
+
+            // Stream Overlay
         case "2":
+
+            // Download the package
             console.log("Downloading package...");
             download(links[2], "./temp/stream-overlay.zip");
+
+            // Break the switch
             break;
     }
+
+    // Close the readline interface
     rl.close();
 });
