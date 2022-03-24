@@ -38,6 +38,15 @@ if (!fs.existsSync("temp")) {
     // If not, create it
     fs.mkdirSync("temp");
 }
+
+// Check if settings file exists
+if (!fs.existsSync("settings.json")) {
+
+    // If not, create it
+    fs.writeFileSync("settings.json", "{}");
+}
+
+// Clear the console
 console.clear();
 
 // Start message
