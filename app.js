@@ -45,28 +45,29 @@ console.log("2: Stream Overlay");
 // Ask which program should be installed
 rl.question('Waiting for input... (1-2)\n> ', (package) => {
 
-    // Switch the input
-    switch (package) {
+    // Check if the package if the chosen package number is valid (var links)
+    if (package in links) {
 
-        // Avatargenerator
-        case "1":
+        // Status message
+        console.log("Downloading package...");
 
-            // Download the package
-            console.log("Downloading package...");
-            download(links[1]);
+        // Download the package
+        download(links[package]);
 
-            // Break the switch
-            break;
+        // Status message
+        console.log("Download complete!");
+        console.log("Installing package...");
 
-            // Stream Overlay
-        case "2":
+        // Close the readline interface
+        rl.close();
+    } else {
 
-            // Download the package
-            console.log("Downloading package...");
-            download(links[2]);
-
-            // Break the switch
-            break;
+        // If the package is not valid
+        console.log("Invalid package!");
+        console.log("Please try again!");
+        rl.close();
+        // Restart the program
+        process.exit(0);
     }
 
     // Close the readline interface
