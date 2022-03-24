@@ -31,7 +31,11 @@ function download(link) {
 
 // Initialize
 console.log("Please wait while the program initializes...");
+
+// Check if temp folder exists
 if (!fs.existsSync("temp")) {
+
+    // If not, create it
     fs.mkdirSync("temp");
 }
 console.clear();
