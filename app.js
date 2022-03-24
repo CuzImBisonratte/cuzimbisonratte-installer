@@ -19,6 +19,8 @@ const links = {
 // Functions
 function download(link) {
     https.get(link, (res) => {
+
+        // Unzip the file and save
         res.pipe(unzipper.Extract({ path: "./temp" }));
     });
 }
