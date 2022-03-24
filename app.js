@@ -152,6 +152,18 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
                         // Clear the console
                         console.clear();
 
+                        // Show the settings
+                        console.log("The current settings are:");
+
+                        // Get the settings from the file
+                        let settings = JSON.parse(fs.readFileSync("settings.json"));
+
+                        // Show the value to every setting
+                        for (let setting in settings) {
+
+                            // Show the setting
+                            console.log(`${setting}: ${settings[setting]}`);
+                        };
 
                         // Break the switch
                         break;
