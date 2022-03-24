@@ -52,6 +52,10 @@ console.clear();
 // Start message
 console.log("Welcome to the CuzImBisonratte - Package installer");
 console.log("With this you can download packages and if nessecary install them.");
+
+// Log a minus line
+console.log("-".repeat(Math.min(process.stdout.columns, 65)));
+
 console.log("What package do you want to download/install?");
 console.log("1: Avatargenerator");
 console.log("2: Stream Overlay");
