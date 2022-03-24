@@ -109,5 +109,67 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
             // Break the switch
             break;
 
+            // Case 2: Settings
+        case "2":
+
+            // Clear the console
+            console.clear();
+
+            // Ask what should be done
+            console.log("What do you want to do?");
+            console.log("1: Change the settings");
+            console.log("2: Reset the settings");
+            console.log("3: Show the settings");
+            console.log("4: Update the cuzimbisonratte-installer (this)");
+
+            // Ask for the input
+            rl.question('Waiting for input... (1-4)\n> ', (settings_todo) => {
+
+                // Switch the settings_todo
+                switch (settings_todo) {
+
+                    // Case 1: Change the settings
+                    case "1":
+
+                        // Clear the console
+                        console.clear();
+
+                        // break the switch
+                        break;
+
+                        // Case 2: Reset the settings
+                    case "2":
+
+                        // Clear the console
+                        console.clear();
+
+                        // Break the switch
+                        break;
+
+                        // Case 3: Show the settings
+                    case "3":
+
+                        // Clear the console
+                        console.clear();
+
+
+                        // Break the switch
+                        break;
+
+                        // Case 4: Update the cuzimbisonratte-installer (this)
+                    case "4":
+
+                        // Clear the console
+                        console.clear();
+
+
+                        // Break the switch
+                        break;
+                }
+
+            });
+
+            // Break the switch
+            break;
     }
 });
