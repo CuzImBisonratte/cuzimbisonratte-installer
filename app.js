@@ -174,6 +174,8 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
                         // Clear the console
                         console.clear();
 
+                        // Status message
+                        console.log("Coming soon!");
 
                         // Break the switch
                         break;
