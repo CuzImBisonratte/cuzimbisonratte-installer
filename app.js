@@ -191,6 +191,29 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
                         // Clear the console
                         console.clear();
 
+                        // Ask what should be changed
+                        console.log("What do you want to change?");
+                        console.log("1: Language of this installer");
+                        console.log("2: The webserver path");
+
+
+                        // Ask for the input
+                        rl.question('Waiting for input... (1-2)\n> ', (settings_change) => {
+
+                            // switch the settings_change
+                            switch (settings_change) {
+
+                                // Case 1: Change the language
+                                case "1":
+
+
+                                    // Break the switch
+                                    break;
+
+                            }
+
+                        });
+
                         // break the switch
                         break;
 
