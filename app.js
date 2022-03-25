@@ -133,8 +133,8 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
             // Clear the console
             console.clear();
 
-            // Ask which program should be installed
-            console.log("What package do you want to download/install?");
+            // Ask which program should be downloaded
+            console.log("What package do you want to download?");
             console.log("1: Avatargenerator");
             console.log("2: Stream Overlay");
             rl.question('Waiting for input... (1-2)\n> ', (package) => {
@@ -150,10 +150,7 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
 
                     // Status message
                     console.log("Download complete!");
-                    console.log("Installing package...");
 
-                    // Close the readline interface
-                    rl.close();
                 } else {
 
                     // If the package is not valid
