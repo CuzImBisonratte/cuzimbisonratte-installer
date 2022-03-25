@@ -206,6 +206,43 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
                                 // Case 1: Change the language
                                 case "1":
 
+                                    // Clear the console
+                                    console.clear();
+
+                                    // Language list
+                                    console.log("1: English");
+                                    console.log("2: German");
+
+                                    // Ask for the input
+                                    rl.question('Waiting for input... (1-2)\n> ', (language) => {
+
+                                        // Check if the language is valid
+                                        if (language in ["1", "2"]) {
+
+                                            // English: en | German: de
+                                            let lang = language == "1" ? "en" : "de";
+
+                                            // Get the settings
+                                            let settings = JSON.parse(fs.readFileSync("settings.json"));
+
+                                            // Set the language
+                                            settings.language = language;
+
+                                            // Write the settings
+                                            fs.writeFileSync("settings.json", JSON.stringify(settings));
+
+                                            // Status message
+                                            console.log("Language changed!");
+                                        } else {
+
+                                            // If the language is not valid
+                                            console.log("Invalid language!");
+                                            console.log("Please try again!");
+                                        }
+
+                                        // Close the readline interface
+                                        rl.close();
+                                    });
 
                                     // Break the switch
                                     break;
