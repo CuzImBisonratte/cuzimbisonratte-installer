@@ -120,7 +120,8 @@ console.log("-".repeat(Math.min(process.stdout.columns, 65)));
 // Ask what to do
 console.log("What do you want to do?");
 console.log("1: Download a package");
-console.log("2: Settings");
+console.log("2: Install a package");
+console.log("3: Settings");
 rl.question("Waiting for input... (1-2)\n> ", (todo) => {
 
     // Switch the todo
@@ -170,8 +171,15 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
             // Break the switch
             break;
 
-            // Case 2: Settings
+            // Case 2: Install a package
         case "2":
+
+
+            break;
+
+
+            // Case 3: Settings
+        case "3":
 
             // Clear the console
             console.clear();
