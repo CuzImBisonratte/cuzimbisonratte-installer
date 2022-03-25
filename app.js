@@ -320,6 +320,50 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
                                     // Break the switch
                                     break;
 
+                                    // Case 2: Change the webserver root directory
+                                case "2":
+
+                                    // Clear the console
+                                    console.clear();
+
+                                    // Ask for the input
+                                    rl.question('Now please put in the path to your webservers root directory...\n> ', (webserver) => {
+
+                                        // Check if the webserver is valid
+                                        if (webserver != "") {
+
+                                            // Check if the folder doesn't exist
+                                            if (!fs.existsSync(webserver)) {
+
+                                                // Status message
+                                                console.log("This folder doesn't exist!");
+                                                console.log("Please try again!");
+                                                rl.close();
+                                            } else {
+
+                                                // Get the settings
+                                                let settings = JSON.parse(fs.readFileSync("settings.json"));
+
+                                                // Set the webserver
+                                                settings.webserver = webserver;
+
+                                                // Write the settings
+                                                fs.writeFileSync("settings.json", JSON.stringify(settings));
+
+                                                // Status message
+                                                console.log("Webserver root directory changed!");
+                                            }
+                                        } else {
+
+                                            // If the webserver is not valid
+                                            console.log("Please put in a real directory!");
+                                            console.log("Normally this is called \"htdocs\"");
+                                        }
+
+                                        // Close the readline interface
+                                        rl.close();
+                                    });
+
                             }
 
                         });
