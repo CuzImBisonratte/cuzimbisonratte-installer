@@ -1,6 +1,8 @@
 // Create all needed variables
 var init_failed = false;
 var settings = {};
+var dir = "";
+var webserver_dir = "";
 
 // Get the needed modules
 const fs = require("fs");
@@ -171,6 +173,68 @@ rl.question("Waiting for input... (1-2)\n> ", (todo) => {
             // Case 2: Install a package
         case "2":
 
+            // Ask which program should be installed
+            console.log("What package do you want to install?");
+            console.log("1: Avatargenerator");
+            console.log("2: Stream Overlay");
+            rl.question('Waiting for input... (1-2)\n> ', (package) => {
+
+                // switch the package
+                switch (package) {
+
+                    // Case 1: Avatargenerator
+                    case "1":
+
+                        // Check if the webserver property is empty string
+                        if (settings.webserver == "") {
+
+                            // Status message
+                            console.log("You don't have the webserver property set, can't install the package!");
+                            console.log("If you want to install the package, please set the webserver property in the settings file.");
+
+                        } else {
+
+                            // Status message
+                            console.log("Installing package...");
+
+                            // Get the directory
+                            dir = "./temp/avatargenerator-1.0.0";
+
+                            // Get the webserver directory from the settings file
+                            webserver_dir = settings.webserver;
+
+                            // Get all files in the directory
+                            files = fs.readdirSync(dir);
+
+                            // Create the webserver directory
+                            fs.mkdirSync(webserver_dir + "/avatargenerator");
+
+                            // Loop through all files
+                            for (let i = 0; i < files.length; i++) {
+
+                                // Get the file
+                                file = files[i];
+
+                                // Get the filename
+                                filename = file.split;
+
+                                // Copy the file to the webserver directory
+                                fs.copyFileSync(dir + "/" + file, webserver_dir + "/avatargenerator/" + file);
+                            }
+
+                            // Status message
+                            console.log("Package installed!");
+                            console.log("Successfully installed to:" + webserver_dir + "/avatargenerator");
+                        }
+
+
+                        // Break the switch
+                        break;
+                }
+
+                // Close the readline interface
+                rl.close();
+            });
 
             break;
 
