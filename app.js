@@ -1,3 +1,6 @@
+// Create all needed variables
+var init_failed = false;
+
 // Get the needed modules
 const fs = require("fs");
 const readline = require("readline");
@@ -31,20 +34,74 @@ function download(link) {
 
 // Initialize
 console.log("Please wait while the program initializes...");
+console.log("");
 
 // Check if temp folder exists
+console.log("Checking if temp folder exists...");
 if (!fs.existsSync("temp")) {
-
     // If not, create it
+    console.log("Temp folder does not exist, creating it...");
     fs.mkdirSync("temp");
 }
 
 // Check if settings file exists
+console.log("Checking if settings file exists...");
 if (!fs.existsSync("settings.json")) {
-
     // If not, create it
+    console.log("Settings file does not exist, creating it...");
     fs.writeFileSync("settings.json", "{}");
+    // Status message
+    console.log("Settings file created!");
+    // Setting all values to default
+    console.log("Setting all values to default...");
+    let settings = JSON.parse(fs.readFileSync("settings.json"));
+    settings.webserver = "";
+    settings.language = "en";
+    // Status message
+    console.log("All values set to default!");
+    // Save the settings
+    console.log("Saving the settings...");
+    fs.writeFileSync("settings.json", JSON.stringify(settings));
+    // Status message
+    console.log("\nPlease restart the program.");
+    // Exit
+    process.exit();
+} else {
+    // Check if all properties exist in the settings file (webserver, language)
+    console.log("Checking if all settings properties exist...");
+    // Get the settings file
+    let settings = JSON.parse(fs.readFileSync("settings.json"));
+    // Check if the webserver property exists
+    if (!settings.webserver) {
+        // If not, create it
+        console.log("Webserver property does not exist, creating it...");
+        settings.webserver = "";
+        // Set init_failed to true
+        init_failed = true;
+    }
+    // Check if the language property exists
+    if (!settings.language) {
+        // If not, create it
+        console.log("Language property does not exist, creating it...");
+        settings.language = "en";
+        // Set init_failed to true
+        init_failed = true;
+    }
+    // Check if init_failed is true
+    if (init_failed) {
+        // If it is, write the settings file
+        console.log("Writing settings file...");
+        fs.writeFileSync("settings.json", JSON.stringify(settings));
+        // Status message
+        console.log("Settings file rewritten!");
+        // Warning message (print out in red)
+        console.log("\x1b[31mWARNING: THE SETTINGS HAVE BEEN RESTORED, PLEASE CHECK IF THEY ARE RIGHT!\x1b[0m");
+        // Please restart the program
+        console.log("Please restart the program.");
+    }
+
 }
+
 
 // Clear the console
 console.clear();
