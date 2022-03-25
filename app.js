@@ -1,5 +1,6 @@
 // Create all needed variables
 var init_failed = false;
+var settings = {};
 
 // Get the needed modules
 const fs = require("fs");
@@ -54,7 +55,7 @@ if (!fs.existsSync("settings.json")) {
     console.log("Settings file created!");
     // Setting all values to default
     console.log("Setting all values to default...");
-    let settings = JSON.parse(fs.readFileSync("settings.json"));
+    settings = JSON.parse(fs.readFileSync("settings.json"));
     settings.webserver = "";
     settings.language = "en";
     // Status message
@@ -70,7 +71,7 @@ if (!fs.existsSync("settings.json")) {
     // Check if all properties exist in the settings file (webserver, language)
     console.log("Checking if all settings properties exist...");
     // Get the settings file
-    let settings = JSON.parse(fs.readFileSync("settings.json"));
+    settings = JSON.parse(fs.readFileSync("settings.json"));
     // Check if the webserver property exists
     if (!settings.webserver) {
         // If not, create it
@@ -98,8 +99,11 @@ if (!fs.existsSync("settings.json")) {
         console.log("\x1b[31mWARNING: THE SETTINGS HAVE BEEN RESTORED, PLEASE CHECK IF THEY ARE RIGHT!\x1b[0m");
         // Please restart the program
         console.log("Please restart the program.");
+    } else {
+        // Load the settings
+        console.log("Loading the settings...");
+        settings = JSON.parse(fs.readFileSync("settings.json"));
     }
-
 }
 
 
