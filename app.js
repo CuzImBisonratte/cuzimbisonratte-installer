@@ -1,3 +1,6 @@
+// Import modules
+const fs = require('fs');
+
 // Function to get Latest Github Sourcecode
 async function getLatestGithubSourcecodeLink(repo) {
     var github_api_link = "https://api.github.com/repos/" + repo + "/releases/latest";
