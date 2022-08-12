@@ -16,6 +16,12 @@ function getGithubSourcecodeLink(repo, tag) {
     return SourceCodeLink;
 }
 
+// Function to get Github Release Codefiles
+function getGithubReleaseFile(repo, tag, filename) {
+    var ReleaseFileLink = "https://github.com/" + repo + "/releases/download/" + tag + "/" + filename;
+    return ReleaseFileLink;
+}
+
 // Function to download a file from a given url to a specific file name
 async function downloadFile(link, filename = "download") {
     const response = await fetch(link);
