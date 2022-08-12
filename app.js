@@ -5,3 +5,8 @@ async function getLatestGithubSourcecodeLink(repo) {
     var SourceCodeLink = "https://github.com/" + repo + "/archive/refs/tags/" + body.tag_name + ".zip";
     return SourceCodeLink;
 }
+
+function getGithubSourcecodeLink(repo, tag) {
+    var SourceCodeLink = "https://github.com/" + repo + "/archive/refs/tags/" + tag + ".zip";
+    return SourceCodeLink;
+}
