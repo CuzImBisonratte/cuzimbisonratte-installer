@@ -61,7 +61,11 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                 file_download.download(url, "tmp.zip").then(() => {
 
                     // Extract the file
-                    extract("tmp.zip", { dir: process.cwd() + "\\tmp\\" });
+                    try {
+                        extract("tmp.zip", { dir: process.cwd() + "\\tmp\\" });
+                    } catch (error) {
+                        console.log(error);
+                    }
 
                 });
             });
