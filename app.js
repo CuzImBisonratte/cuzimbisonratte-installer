@@ -68,11 +68,8 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                         // Get folder name
                         const subdir_name = fs.readdirSync("./tmp", { withFileTypes: true }).map((item) => item.name)[0];
 
-                        // Rename the folder
-                        fs_extra.move("./tmp/" + subdir_name, "./tmp/" + program_list[program_num - 1], (err) => {});
-
                         // Move program to install dir
-                        fs_extra.move("./tmp/" + program_list[program_num - 1], path, function(err) {});
+                        fs_extra.move("./tmp/" + subdir_name, path, function(err) {});
                     });
 
                 });
