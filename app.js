@@ -28,7 +28,7 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
 
     // Validate the input
     if (!validate.number(program_num, 1, program_list.length)) {
-        console.error(style.blink, style.bright, style.fg.red, "That is not a valid number", style.reset);
+        console.error(style.blink + style.bright + style.fg.red + "That is not a valid program" + style.reset);
         process.exit();
     }
 
