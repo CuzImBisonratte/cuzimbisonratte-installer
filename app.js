@@ -4,6 +4,8 @@ const gh_links = require("./modules/github_link_creation.js");
 const file_download = require("./modules/download_file.js");
 const messages = require("./modules/message_builder.js");
 const validate = require("./modules/validate_input.js");
+const style = require("./modules/style_output.js");
+
 
 
 // Read the packets file
@@ -24,9 +26,8 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
 
     // Validate the input
     if (!validate.number(program_num, 1, program_list.length)) {
-        console.error("\x1b[5m\x1b[1m\x1b[31mThat is not a valid number");
-        console.log("\x1b[0m")
-        process.exit("That is not a valid number")
+        console.error(style.blink, style.bright, style.fg.red, "That is not a valid number", style.reset);
+        process.exit();
     }
 
     // Close readline interface
