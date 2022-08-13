@@ -35,12 +35,21 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
     // Get the program
     const program = programs[program_list[program_num - 1]];
 
+    // Clear console
+    console.clear();
+
     // Check requirements
     if (program.requires.includes("webserver")) {
         console.log(style.underscore + style.fg.yellow + "Warning: This program needs a webserver to run!");
         console.log("Please install it to your webservers served directory" + style.reset);
     }
 
-    // Close readline interface
-    rl.close();
+    // Ask for install path
+    rl.question(messages.buildPathQuestion(program_list[program_num - 1]), (path) => {
+
+        // Close readline interface
+        rl.close();
+
+    });
+    rl.write(process.cwd());
 });

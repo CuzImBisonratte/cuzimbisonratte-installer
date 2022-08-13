@@ -87,8 +87,17 @@ function buildMenuQuestionMessage(program_list) {
     return message;
 }
 
+function buildPathQuestionMessage(program_name) {
+    var message = "\n";
+    message += "Where should " + program_name + " be installed to?\n";
+    message += "Please change the path to where you want to install it:\n"
+    message += "Path> "
+    return message;
+}
+
 module.exports = {
     buildIntro: buildIntroMessage,
     sendIntro: sendIntroMessage,
-    buildMenu: buildMenuQuestionMessage
+    buildMenu: buildMenuQuestionMessage,
+    buildPathQuestion: buildPathQuestionMessage
 }
