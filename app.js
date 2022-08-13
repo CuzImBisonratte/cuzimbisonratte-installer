@@ -69,7 +69,11 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                         const subdir_name = fs.readdirSync("./tmp", { withFileTypes: true }).map((item) => item.name)[0];
 
                         // Move program to install dir
-                        fs_extra.move("./tmp/" + subdir_name, path, function(err) {});
+                        fs_extra.moveSync("./tmp/" + subdir_name, path, function(err) {});
+
+                        // Clean up
+                        fs.rmSync("./tmp.zip", {});
+
                     });
 
                 });
