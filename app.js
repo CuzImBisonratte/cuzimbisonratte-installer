@@ -17,5 +17,10 @@ const rl = readline.createInterface({
 // Send intro message
 messages.sendIntro();
 
-// Close readline interface
-rl.close();
+// Question menu (program)
+rl.question(messages.buildMenu(program_list), (answer) => {
+
+
+    // Close readline interface
+    rl.close();
+});
