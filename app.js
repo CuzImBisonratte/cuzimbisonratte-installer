@@ -4,6 +4,7 @@ const gh_links = require("./modules/github_link_creation.js");
 const file_download = require("./modules/download_file.js");
 const messages = require("./modules/message_builder.js");
 const validate = require("./modules/validate_input.js");
+const get_url = require("./modules/get_url.js");
 
 // Read the packets file
 const packet_list = require("./packets.json");
@@ -53,21 +54,9 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
             }
 
             // Get the link
-            var link = "";
-            if (program.src == "github") {
-                if (program.use_file == "sourcecode") {
-                    if (program.use_tag == "latest") {
-                        link = github_link_creation.sourceCodeLatest(program.github_repo);
-                    } else {
-                        link = github_link_creation.sourceCodeSpecific(program.github_repo, program.use_tag);
-                    }
-                } else {
-                    link = github_link_creation.releaseFileSpecific(program.github_repo, program.use_tag, program.use_file);
-                }
-            }
-            if (program.src == "url") {
-                link = program.zip_url;
-            }
+            get_url.getUrl(program).then((url) => {
+
+            });
 
             // Close readline interface
             rl.close();
