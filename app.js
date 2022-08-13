@@ -7,7 +7,6 @@ const validate = require("./modules/validate_input.js");
 
 // Read the packets file
 const packet_list = require("./packets.json");
-const { verify } = require('crypto');
 const program_list = Object.keys(packet_list.packets);
 const programs = packet_list.packets;
 
