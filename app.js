@@ -28,7 +28,7 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
 
     // Validate the input
     if (!validate.number(program_num, 1, program_list.length)) {
-        console.error(style.blink + style.bright + style.fg.red + "That is not a valid program" + style.reset);
+        messages.sendTypeError("number");
         process.exit();
     }
 
@@ -40,8 +40,7 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
 
     // Check requirements
     if (program.requires.includes("webserver")) {
-        console.log(style.underscore + style.fg.yellow + "Warning: This program needs a webserver to run!");
-        console.log("Please install it to your webservers served directory" + style.reset);
+        messages.sendRequirementWarning("webserver");
     }
 
     // Ask for install path

@@ -1,3 +1,35 @@
+const { type } = require("os");
+
+const style = {
+    reset: "\x1b[0m",
+    bright: "\x1b[1m",
+    dim: "\x1b[2m",
+    underscore: "\x1b[4m",
+    blink: "\x1b[5m",
+    reverse: "\x1b[7m",
+    hidden: "\x1b[8m",
+    text: {
+        black: "\x1b[30m",
+        red: "\x1b[31m",
+        green: "\x1b[32m",
+        yellow: "\x1b[33m",
+        blue: "\x1b[34m",
+        magenta: "\x1b[35m",
+        cyan: "\x1b[36m",
+        white: "\x1b[37m"
+    },
+    bg: {
+        black: "\x1b[40m",
+        red: "\x1b[41m",
+        green: "\x1b[42m",
+        yellow: "\x1b[43m",
+        blue: "\x1b[44m",
+        magenta: "\x1b[45m",
+        cyan: "\x1b[46m",
+        white: "\x1b[47m"
+    }
+};
+
 function buildIntroMessage() {
     const white_space_char = "▓";
     const intro_message_text = "CuzImBisonratte-Installer";
@@ -87,6 +119,31 @@ function buildMenuQuestionMessage(program_list) {
     return message;
 }
 
+function buildTypeErrorMessage(type_error) {
+    var message = style.blink + style.bright + style.text.red + "That is not a valid " + type_error + "!" + style.reset;
+    return message;
+}
+
+function sendTypeErrorMessage(type_error) {
+    console.error(buildTypeErrorMessage(type_error));
+}
+
+function buildRequirementWarningMessage(requirement) {
+    var message = ""
+    if (requirement == "webserver") {
+        message += style.underscore + style.text.yellow;
+        message += "Warning: This program needs a webserver to run!\n";
+        message += "Please install it to your webservers served directory";
+        message += style.reset;
+    }
+
+    return message;
+}
+
+function sendRequirementWarningMessage(requirement) {
+    console.error(buildRequirementWarningMessage(requirement));
+}
+
 function buildPathQuestionMessage(program_name) {
     var message = "\n";
     message += "Where should " + program_name + " be installed to?\n";
@@ -99,5 +156,9 @@ module.exports = {
     buildIntro: buildIntroMessage,
     sendIntro: sendIntroMessage,
     buildMenu: buildMenuQuestionMessage,
+    buildTypeError: buildTypeErrorMessage,
+    sendTypeError: sendTypeErrorMessage,
+    buildRequirementWarning: buildRequirementWarningMessage,
+    sendRequirementWarning: sendRequirementWarningMessage,
     buildPathQuestion: buildPathQuestionMessage
 }
