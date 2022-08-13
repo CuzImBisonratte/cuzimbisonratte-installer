@@ -205,6 +205,29 @@ function sendProgressBar(percentage) {
     console.log(buildProgressBar(percentage));
 }
 
+function buildInstallFinishedMessage(custom_msg) {
+    var line = "Installation finished";
+    line = line.split("");
+    var message = ""
+    var colors = Object.values(style.text);
+    message += style.blink;
+    line.forEach(char => {
+        message += colors[Math.floor(Math.random() * colors.length)];
+        message += char;
+    });
+    message += style.reset;
+    message += "\n\n";
+    if (custom_msg) {
+        message += custom_msg;
+    }
+    return message;
+}
+
+function sendInstallFinishedMessage(custom_msg) {
+    console.clear();
+    console.log(buildInstallFinishedMessage(custom_msg));
+}
+
 module.exports = {
     buildIntro: buildIntroMessage,
     sendIntro: sendIntroMessage,
@@ -219,5 +242,7 @@ module.exports = {
     buildInstallAbort: buildInstallationAbortingMessage,
     sendInstallAbort: sendInstallationAbortingMessage,
     buildProgress: buildProgressBar,
-    sendProgress: sendProgressBar
+    sendProgress: sendProgressBar,
+    buildInstallFinished: buildInstallFinishedMessage,
+    sendInstallFinished: sendInstallFinishedMessage
 }

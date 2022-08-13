@@ -92,6 +92,12 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                         // Progress
                         messages.sendProgress(100);
 
+                        // Finish install 
+                        messages.sendInstallFinished(program.post_install_msg);
+
+                        // Terminate process
+                        process.exit(0);
+
                     });
 
                 });
