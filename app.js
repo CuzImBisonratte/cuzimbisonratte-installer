@@ -56,6 +56,10 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
             // Get the link
             get_url.getUrl(program).then((url) => {
 
+                // Download the file
+                file_download.download(url, "tmp.zip").then(
+
+                );
             });
 
             // Close readline interface
