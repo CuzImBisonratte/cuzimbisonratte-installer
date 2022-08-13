@@ -7,6 +7,7 @@ const validate = require("./modules/validate_input.js");
 
 // Read the packets file
 const packet_list = require("./packets.json");
+const github_link_creation = require('./modules/github_link_creation.js');
 const program_list = Object.keys(packet_list.packets);
 const programs = packet_list.packets;
 
@@ -49,6 +50,23 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
             if (!validate.bool(confirm)) {
                 messages.sendInstallAbort();
                 process.exit();
+            }
+
+            // Get the link
+            var link = "";
+            if (program.src == "github") {
+                if (program.use_file == "sourcecode") {
+                    if (program.use_tag == "latest") {
+                        link = github_link_creation.sourceCodeLatest(program.github_repo);
+                    } else {
+                        link = github_link_creation.sourceCodeSpecific(program.github_repo, program.use_tag);
+                    }
+                } else {
+                    link = github_link_creation.releaseFileSpecific(program.github_repo, program.use_tag, program.use_file);
+                }
+            }
+            if (program.src == "url") {
+                link = program.zip_url;
             }
 
             // Close readline interface
