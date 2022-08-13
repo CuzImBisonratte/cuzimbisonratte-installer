@@ -9,6 +9,14 @@ function validateNumbers(validation, valid_min, valid_max) {
     return true;
 }
 
+function validateBoolean(validation) {
+    if (validation == "") return false;
+    if (validation == 0) return false;
+    if (validation.toLowerCase().charAt(0) == "n") return false;
+    return true;
+}
+
 module.exports = {
-    number: validateNumbers
+    number: validateNumbers,
+    bool: validateBoolean
 }

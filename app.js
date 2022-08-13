@@ -7,6 +7,7 @@ const validate = require("./modules/validate_input.js");
 
 // Read the packets file
 const packet_list = require("./packets.json");
+const { verify } = require('crypto');
 const program_list = Object.keys(packet_list.packets);
 const programs = packet_list.packets;
 
@@ -43,9 +44,13 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
     rl.question(messages.buildPathQuestion(program_list[program_num - 1]), (path) => {
 
         // Summary
-        rl.question(messages.sendSummary(program_list[program_num - 1], program.use_tag, path, program.src), (confirm) => {
+        rl.question(messages.buildSummary(program_list[program_num - 1], program.use_tag, path, program.src), (confirm) => {
 
-
+            // Verify the confirmation
+            if (!validate.bool(confirm)) {
+                messages.sendInstallAbort();
+                process.exit();
+            }
 
             // Close readline interface
             rl.close();

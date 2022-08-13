@@ -169,6 +169,21 @@ function sendSummaryQuestion(program, version, path, src) {
     console.log(buildSummaryQuestion(program, version, path, src));
 }
 
+function buildInstallationAbortingMessage() {
+    var message = "OK!\n";
+    message += "Installation has been ";
+    message += style.text.red;
+    message += "aborted";
+    message += style.reset;
+    message += "!";
+    return message;
+}
+
+function sendInstallationAbortingMessage() {
+    console.clear();
+    console.log(buildInstallationAbortingMessage());
+}
+
 module.exports = {
     buildIntro: buildIntroMessage,
     sendIntro: sendIntroMessage,
@@ -177,7 +192,9 @@ module.exports = {
     sendTypeError: sendTypeErrorMessage,
     buildRequirementWarning: buildRequirementWarningMessage,
     sendRequirementWarning: sendRequirementWarningMessage,
+    buildPathQuestion: buildPathQuestionMessage,
     buildSummary: buildSummaryQuestion,
     sendSummary: sendSummaryQuestion,
-    buildPathQuestion: buildPathQuestionMessage
+    buildInstallAbort: buildInstallationAbortingMessage,
+    sendInstallAbort: sendInstallationAbortingMessage
 }
