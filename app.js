@@ -1,11 +1,13 @@
 // Import modules
 const readline = require('readline');
+const extract = require('extract-zip');
+const fs = require('fs');
+const fs_extra = require('fs-extra');
 const gh_links = require("./modules/github_link_creation.js");
 const file_download = require("./modules/download_file.js");
 const messages = require("./modules/message_builder.js");
 const validate = require("./modules/validate_input.js");
 const get_url = require("./modules/get_url.js");
-const extract = require('extract-zip')
 
 // Read the packets file
 const packet_list = require("./packets.json");
@@ -61,11 +63,17 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                 file_download.download(url, "tmp.zip").then(() => {
 
                     // Extract the file
-                    try {
-                        extract("tmp.zip", { dir: process.cwd() + "\\tmp\\" });
-                    } catch (error) {
-                        console.log(error);
-                    }
+                    extract("tmp.zip", { dir: process.cwd() + "\\tmp\\" }).then(() => {
+
+                        // Get folder name
+                        const subdir_name = fs.readdirSync("./tmp", { withFileTypes: true }).map((item) => item.name)[0];
+
+                        // Rename the folder
+                        fs_extra.move("./tmp/" + subdir_name, "./tmp/" + program_list[program_num - 1], (err) => {});
+
+                        // Move program to install dir
+                        fs_extra.move("./tmp/" + program_list[program_num - 1], path, function(err) {});
+                    });
 
                 });
             });
