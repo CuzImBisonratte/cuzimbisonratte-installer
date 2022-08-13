@@ -42,8 +42,15 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
     // Ask for install path
     rl.question(messages.buildPathQuestion(program_list[program_num - 1]), (path) => {
 
-        // Close readline interface
-        rl.close();
+        // Summary
+        rl.question(messages.sendSummary(program_list[program_num - 1], program.use_tag, path, program.src), (confirm) => {
+
+
+
+            // Close readline interface
+            rl.close();
+
+        });
 
     });
     rl.write(process.cwd());

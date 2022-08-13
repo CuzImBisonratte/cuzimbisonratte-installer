@@ -152,6 +152,23 @@ function buildPathQuestionMessage(program_name) {
     return message;
 }
 
+function buildSummaryQuestion(program, version, path, src) {
+    message = "Are you sure you want to install the following:\n";
+    message += style.dim;
+    message += "Program: " + program + "\n";
+    message += "Version: " + version + "\n";
+    message += "Install-Path: " + path + "\n";
+    message += "Code-Source: " + src + "\n";
+    message += style.reset;
+    message += "Y/N> "
+    return message;
+}
+
+function sendSummaryQuestion(program, version, path, src) {
+    console.clear();
+    console.log(buildSummaryQuestion(program, version, path, src));
+}
+
 module.exports = {
     buildIntro: buildIntroMessage,
     sendIntro: sendIntroMessage,
@@ -160,5 +177,7 @@ module.exports = {
     sendTypeError: sendTypeErrorMessage,
     buildRequirementWarning: buildRequirementWarningMessage,
     sendRequirementWarning: sendRequirementWarningMessage,
+    buildSummary: buildSummaryQuestion,
+    sendSummary: sendSummaryQuestion,
     buildPathQuestion: buildPathQuestionMessage
 }
