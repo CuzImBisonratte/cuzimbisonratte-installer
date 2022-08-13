@@ -5,6 +5,7 @@ const file_download = require("./modules/download_file.js");
 const messages = require("./modules/message_builder.js");
 const validate = require("./modules/validate_input.js");
 const get_url = require("./modules/get_url.js");
+const extract = require('extract-zip')
 
 // Read the packets file
 const packet_list = require("./packets.json");
@@ -57,9 +58,12 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
             get_url.getUrl(program).then((url) => {
 
                 // Download the file
-                file_download.download(url, "tmp.zip").then(
+                file_download.download(url, "tmp.zip").then(() => {
 
-                );
+                    // Extract the file
+                    extract("tmp.zip", { dir: process.cwd() + "\\tmp\\" });
+
+                });
             });
 
             // Close readline interface
