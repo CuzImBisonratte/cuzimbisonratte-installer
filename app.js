@@ -11,6 +11,8 @@ const style = require("./modules/style_output.js");
 // Read the packets file
 const packet_list = require("./packets.json");
 const program_list = Object.keys(packet_list.packets);
+const programs = packet_list.packets;
+
 
 // Create the readline interface
 const rl = readline.createInterface({
@@ -28,6 +30,15 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
     if (!validate.number(program_num, 1, program_list.length)) {
         console.error(style.blink, style.bright, style.fg.red, "That is not a valid number", style.reset);
         process.exit();
+    }
+
+    // Get the program
+    const program = programs[program_list[program_num - 1]];
+
+    // Check requirements
+    if (program.requires.includes("webserver")) {
+        console.log(style.underscore + style.fg.yellow + "Warning: This program needs a webserver to run!");
+        console.log("Please install it to your webservers served directory" + style.reset);
     }
 
     // Close readline interface
