@@ -56,14 +56,26 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                 process.exit();
             }
 
+            // Progress
+            messages.sendProgress(0);
+
             // Get the link
             get_url.getUrl(program).then((url) => {
+
+                // Progress
+                messages.sendProgress(20);
 
                 // Download the file
                 file_download.download(url, "tmp.zip").then(() => {
 
+                    // Progress
+                    messages.sendProgress(40);
+
                     // Extract the file
                     extract("tmp.zip", { dir: process.cwd() + "\\tmp\\" }).then(() => {
+
+                        // Progress
+                        messages.sendProgress(60);
 
                         // Get folder name
                         const subdir_name = fs.readdirSync("./tmp", { withFileTypes: true }).map((item) => item.name)[0];
@@ -71,8 +83,14 @@ rl.question(messages.buildMenu(program_list), (program_num) => {
                         // Move program to install dir
                         fs_extra.moveSync("./tmp/" + subdir_name, path, function(err) {});
 
+                        // Progress
+                        messages.sendProgress(80);
+
                         // Clean up
                         fs.rmSync("./tmp.zip", {});
+
+                        // Progress
+                        messages.sendProgress(100);
 
                     });
 

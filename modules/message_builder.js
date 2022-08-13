@@ -184,6 +184,27 @@ function sendInstallationAbortingMessage() {
     console.log(buildInstallationAbortingMessage());
 }
 
+function buildProgressBar(percentage) {
+    var message = "Installation progress";
+    message += "\n[";
+    message += style.text.green;
+    for (let i = 0; i < percentage; i = i + 2) {
+        message += "≡";
+    }
+    message += style.reset + style.dim + style.text.red + style.blink;
+    for (let j = 0; j < (100 - percentage); j = j + 2) {
+        message += "-";
+    }
+    message += style.reset;
+    message += "] " + percentage + "%"
+    return message;
+}
+
+function sendProgressBar(percentage) {
+    console.clear();
+    console.log(buildProgressBar(percentage));
+}
+
 module.exports = {
     buildIntro: buildIntroMessage,
     sendIntro: sendIntroMessage,
@@ -196,5 +217,7 @@ module.exports = {
     buildSummary: buildSummaryQuestion,
     sendSummary: sendSummaryQuestion,
     buildInstallAbort: buildInstallationAbortingMessage,
-    sendInstallAbort: sendInstallationAbortingMessage
+    sendInstallAbort: sendInstallationAbortingMessage,
+    buildProgress: buildProgressBar,
+    sendProgress: sendProgressBar
 }
