@@ -1,23 +1,6 @@
 {
-    "dependencies": {
-        "unzipper": "^0.10.11"
-    },
-    "name": "cuzimbisonratte-installer",
-    "description": "This is an little installer for some of my projects.",
-    "version": "0.1.2",
-    "main": "app.js",
-    "devDependencies": {},
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/CuzImBisonratte/cuzimbisonratte-installer.git"
-    },
-    "author": "CuzImBisonratte",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/CuzImBisonratte/cuzimbisonratte-installer/issues"
-    },
-    "homepage": "https://github.com/CuzImBisonratte/cuzimbisonratte-installer#readme"
+  "dependencies": {
+    "extract-zip": "^2.0.1",
+    "fs-extra": "^10.1.0"
+  }
 }

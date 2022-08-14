@@ -1,0 +1,29 @@
+{
+    "list_version": 1,
+    "packets": {
+        "avatargenerator": {
+            "src": "github",
+            "github_repo": "cuzimbisonratte/avatargenerator",
+            "use_tag": "latest",
+            "use_file": "sourcecode",
+            "requires": ["webserver"],
+            "post_install_msg": "Navigate to http://[webserver]/avatargenerator to generate your first avatar"
+        },
+        "stream_overlay": {
+            "src": "github",
+            "github_repo": "cuzimbisonratte/stream-overlay",
+            "use_tag": "v2.1.0",
+            "use_file": "sourcecode",
+            "requires": ["webserver"],
+            "post_install_msg": "You can find the installation under http://[webserver]/stream_overlay"
+        },
+        "sharesimple": {
+            "src": "github",
+            "github_repo": "sharesimple/sharesimple",
+            "use_tag": "v1.0.0",
+            "use_file": "v1_0_0.zip",
+            "requires": ["webserver"],
+            "post_install_msg": "Finish the install under http://[webserver]/sharesimple"
+        }
+    }
+}
